@@ -671,6 +671,112 @@ CVC5_EXPORT std::ostream& operator<<(std::ostream& out, InputLanguage lang);
 namespace std {
 CVC5_EXPORT std::string to_string(cvc5::modes::InputLanguage lang);
 }
+
+namespace cvc5 {
+#endif
+
+/* -------------------------------------------------------------------------- */
+/* Objective kinds                                                            */ 
+/* -------------------------------------------------------------------------- */
+
+#ifdef CVC5_API_USE_C_ENUMS
+#undef EVALUE
+#define EVALUE(name) CVC5_OBJ_KIND_##name
+#endif
+
+enum ENUM(ObjectiveKind)
+{
+  /** No objective kind specified. */
+  EVALUE(OBJECTIVE_NONE),
+  /** Minimization single objective. */
+  EVALUE(OBJECTIVE_MIN),
+  /** Maximization single objective. */
+  EVALUE(OBJECTIVE_MAX),
+  /** Lexicographic multi-objective. */
+  EVALUE(OBJECTIVE_LEX),
+  /** Pareto multi-objective. */
+  EVALUE(OBJECTIVE_PARETO),
+  /** MINMAX multi-objective. */
+  EVALUE(OBJECTIVE_MINMAX),
+  /** MAXMIN multi-objective. */
+  EVALUE(OBJECTIVE_MAXMIN),
+};
+
+#ifdef CVC5_API_USE_C_ENUMS
+#ifndef DOXYGEN_SKIP
+typedef enum ENUM(ObjectiveKind) ENUM(ObjectiveKind);
+#endif
+#endif
+
+#ifdef CVC5_API_USE_C_ENUMS
+/**
+ * Get a string representation of a Cvc5ObjectiveKind.
+ * @param ok The objective kind.
+ * @return The string representation.
+ */
+// TODO
+#else
+/**
+ * Serialize an ObjectiveKind to given stream.
+ * @param out The output stream
+ * @param ok The objective kind to be serialized to the given output stream
+ * @return The output stream
+ */
+CVC5_EXPORT std::ostream& operator<<(std::ostream& out, ObjectiveKind ok);
+}  // namespace cvc5
+
+namespace std {
+std::string to_string(cvc5::ObjectiveKind ok);
+}
+
+namespace cvc5 {
+#endif
+
+/* -------------------------------------------------------------------------- */
+/* Strategy kinds                                                            */ 
+/* -------------------------------------------------------------------------- */
+
+#ifdef CVC5_API_USE_C_ENUMS
+#undef EVALUE
+#define EVALUE(name) CVC5_OMT_STRAT_KIND_##name
+#endif
+
+enum ENUM(OMTStrategyKind)
+{
+  /** No strategy kind specified. */  
+  EVALUE(STRATEGY_NONE),
+  /** Binary search strategy. */  
+  EVALUE(STRATEGY_BINARY),
+  /** Linear search strategy. */
+  EVALUE(STRATEGY_LINEAR),
+};
+
+#ifdef CVC5_API_USE_C_ENUMS
+#ifndef DOXYGEN_SKIP
+typedef enum ENUM(OMTStrategyKind) ENUM(OMTStrategyKind);
+#endif
+#endif
+
+#ifdef CVC5_API_USE_C_ENUMS
+/**
+ * Get a string representation of a Cvc5OMTStrategyKind.
+ * @param osk The optimization strategy kind.
+ * @return The string representation.
+ */
+// TODO
+#else
+/**
+ * Serialize an OMTStrategyKind to given stream.
+ * @param out The output stream
+ * @param osk The optimization strategy kind to be serialized to the given output stream
+ * @return The output stream
+ */
+CVC5_EXPORT std::ostream& operator<<(std::ostream& out, OMTStrategyKind osk);
+}  // namespace cvc5
+
+namespace std {
+std::string to_string(cvc5::OMTStrategyKind osk);
+}
 #endif
 
 #endif
